@@ -30,8 +30,8 @@ class CategoriesRepository {
     return this.categories;
   }
 
-  findById(id: string) {
-    return this.categories.find((category) => category.id === id);
+  findByName(name: string) {
+    return this.categories.find((category) => category.name === name);
   }
 }
 
