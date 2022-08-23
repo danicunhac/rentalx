@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { CategoriesRepository } from '../modules/cars/repositories/CategoriesRepository';
-import { PostgresCategoriesRepository } from '../modules/cars/repositories/PostgresCategoriesRepository';
 import { CreateCategoryService } from '../modules/cars/services/CreateCategoryService';
 
 const categoriesRoutes = Router();
@@ -14,20 +13,6 @@ categoriesRoutes.get('/', (req, res) => {
 
 categoriesRoutes.post('/', (req, res) => {
   const { name, description } = req.body;
-
-  {
-    /**
-     * Creating a category service with a PostgresCategoriesRepository
-     * that implements the ICategoriesRepository interface.
-     */
-    const categoriesRepository = new PostgresCategoriesRepository();
-
-    const createCategoryService = new CreateCategoryService(
-      categoriesRepository
-    );
-
-    createCategoryService.execute({ name, description });
-  }
 
   const createCategoryService = new CreateCategoryService(categoriesRepository);
 
